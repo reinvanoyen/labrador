@@ -20,6 +20,7 @@ import Target from "./ecs/components/Target.ts";
 import useGlobalStore from "./store/global.ts";
 import TextRenderingSystem from "./ecs/systems/TextRenderingSystem.ts";
 import Text from "./ecs/components/Text.ts";
+import ExportSystem from "./ecs/systems/ExportSystem.ts";
 
 async function init() {
 
@@ -38,12 +39,13 @@ async function init() {
 
 	ecs.addSystem(new MovementSystem());
 	ecs.addSystem(new TargetMovementSystem());
+	ecs.addSystem(new ExportSystem(renderingSystem));
 
 	const entity = new ECS.Entity([
-		new Position({x: 100, y: 100}),
+		new Position({x: 325, y: 150}),
 		new Target(),
 		new Velocity(),
-		new Text({value: 'Labrador', color: 0xf14000})
+		new Text({value: 'Labrador', color: 0xf14000, size: 90})
 	]);
 
 	ecs.addEntity(entity);
@@ -82,7 +84,7 @@ async function init() {
 	useParameterStore.setState({
 		parameters: {
 			text: 'Labrador',
-			textSize: 20,
+			textSize: 90,
 			targetX: 200,
 			targetY: 200,
 			mass: 10,
@@ -90,9 +92,11 @@ async function init() {
 			slowingRadius: 30
 		}
 	});
+
 	useGlobalStore.setState({
 		isActive: false
 	});
+
 	useControlStore.setState({
 		controls: {
 			'Text': [

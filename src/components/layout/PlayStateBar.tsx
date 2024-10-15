@@ -1,10 +1,10 @@
 import {Box, Flex, IconButton} from "@radix-ui/themes";
-import {PauseIcon, PlayIcon} from "@radix-ui/react-icons";
+import {CircleIcon, PauseIcon, PlayIcon, StopIcon} from "@radix-ui/react-icons";
 import useGlobalStore from "../../store/global.ts";
 import Label from "../ui/Label.tsx";
 
 function PlayStateBar() {
-	const {isActive, currentFrame, activate, deactivate} = useGlobalStore();
+	const {isActive, isRecording, currentFrame, activate, deactivate, startRecording, stopRecording} = useGlobalStore();
 
 	return (
 		<Flex justify="center" width="100%" py="2" style={{
@@ -17,6 +17,9 @@ function PlayStateBar() {
 				</Box>
 				<IconButton onClick={isActive ? deactivate : activate}>
 					{isActive ? <PauseIcon width="14" height="14" /> : <PlayIcon width="14" height="14" />}
+				</IconButton>
+				<IconButton onClick={isRecording ? stopRecording : startRecording}>
+					{isRecording ? <StopIcon width="14" height="14" /> : <CircleIcon width="14" height="14" />}
 				</IconButton>
 			</Flex>
 		</Flex>

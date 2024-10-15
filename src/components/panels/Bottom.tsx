@@ -1,6 +1,6 @@
-import {Tabs, Text} from "@radix-ui/themes";
+import {Tabs} from "@radix-ui/themes";
 import Timeline from "./Timeline.tsx";
-import Renders from "./Renders.tsx";
+import Export from "./Export.tsx";
 import EntityInspector from "./EntityInspector.tsx";
 
 function Bottom() {
@@ -18,7 +18,7 @@ function Bottom() {
 				<EntityInspector />
 			</Tabs.Content>
 			<Tabs.Content value="renders">
-				<Renders />
+				<Export />
 			</Tabs.Content>
 		</Tabs.Root>
 	);
