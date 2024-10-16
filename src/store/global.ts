@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import useKeyframeStore from "./keyframes.ts";
+import useParameterStore from "./parameters.ts";
 
 interface TGlobalState {
 	isActive: boolean;
@@ -6,20 +8,28 @@ interface TGlobalState {
 	currentFrame: number;
 }
 
-const useGlobalStore = create<TGlobalState>((set) => ({
+const useGlobalStore = create<TGlobalState>((set, get) => ({
 	isActive: false,
 	isRecording: false,
 	currentFrame: 0,
-	resetCurrentFrame: () => set((state) => {
+	setCurrentFrame: (frame) => set((state) => {
+		const {keyframes} = useKeyframeStore.getState();
+		const {setParameter} = useParameterStore.getState();
+
+		if (keyframes[frame]) {
+			keyframes[frame].forEach(data => {
+				setParameter(data.name, data.value);
+			});
+		}
+
 		return {
-			currentFrame: 0
+			currentFrame: frame
 		};
 	}),
 	activate: () => set((state) => ({
 		isActive: true
 	})),
 	deactivate: () => set((state) => ({
-		...state,
 		isActive: false
 	})),
 	startRecording: () => set((state) => ({

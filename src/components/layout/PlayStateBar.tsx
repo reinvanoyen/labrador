@@ -1,4 +1,4 @@
-import {Box, Flex, IconButton, Text} from "@radix-ui/themes";
+import {Flex, IconButton, Text} from "@radix-ui/themes";
 import {CircleIcon, PauseIcon, PlayIcon, ResetIcon, StopIcon} from "@radix-ui/react-icons";
 import useGlobalStore from "../../store/global.ts";
 import Label from "../ui/Label.tsx";
@@ -6,9 +6,9 @@ import Label from "../ui/Label.tsx";
 function PlayStateBar() {
 	const {
 		isActive,
-		resetCurrentFrame,
 		isRecording,
 		currentFrame,
+		setCurrentFrame,
 		activate,
 		deactivate,
 		startRecording,
@@ -41,7 +41,7 @@ function PlayStateBar() {
 						)}
 					</Flex>
 				</Flex>
-				<IconButton onClick={resetCurrentFrame} color="gray">
+				<IconButton onClick={() => setCurrentFrame(0)} color="gray">
 					<ResetIcon />
 				</IconButton>
 				<IconButton onClick={isActive ? deactivate : activate}>

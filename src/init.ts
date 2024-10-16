@@ -24,13 +24,13 @@ import ExportSystem from "./ecs/systems/ExportSystem.ts";
 import WiggleSystem from "./ecs/systems/WiggleSystem.ts";
 import Wiggle from "./ecs/components/Wiggle.ts";
 import BlurSystem from "./ecs/systems/BlurSystem.ts";
+import MessageBus from "./core/MessageBus.ts";
 
 async function init() {
 
 	let isUpdating = true;
 	const ecs = new ECS.Core();
 
-	ecs.addSystem(new MessagingSystem());
 	ecs.addSystem(new UiSystem());
 
 	const renderingSystem = new RenderingSystem(document.getElementById('canvas'));
@@ -231,9 +231,11 @@ async function init() {
 	// Define the render loop
 	function update() {
 		if (isUpdating) {
-			useGlobalStore.setState((state) => ({...state, currentFrame: state.currentFrame + 1}));
+			const {currentFrame, setCurrentFrame} = useGlobalStore.getState();
+			setCurrentFrame(currentFrame + 1);
 			ecs.update();
 		}
+		MessageBus.process();
 		requestAnimationFrame(update);
 	}
 

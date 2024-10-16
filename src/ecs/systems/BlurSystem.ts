@@ -18,6 +18,6 @@ export default class BlurSystem extends ECS.System {
 	}
 
 	postUpdate() {
-		this.blurFilter.blur = this.blur;
+		this.blurFilter.strength = this.blur;
 	}
 }
