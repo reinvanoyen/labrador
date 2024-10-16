@@ -13,7 +13,7 @@ export default class RenderingSystem extends ECS.System {
 	async init() {
 
 		this.pixiApp = new PIXI.Application();
-		await this.pixiApp.init({ width: 640, height: 360 });
+		await this.pixiApp.init({ width: 1920, height: 1080 });
 		this.stage = this.pixiApp.stage;
 
 		this.rootEl = await dom.lateQuerySelector('#canvas');

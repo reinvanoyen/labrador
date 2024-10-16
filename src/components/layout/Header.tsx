@@ -1,5 +1,6 @@
-import {Button, Flex, Heading} from "@radix-ui/themes";
-import {GlobeIcon} from "@radix-ui/react-icons";
+import {Flex, Heading} from "@radix-ui/themes";
+import SettingsMenu from "./SettingsMenu.tsx";
+import ViewMenu from "./ViewMenu.tsx";
 
 function Header() {
 	return (
@@ -8,9 +9,8 @@ function Header() {
 		}}>
 			<Heading size="3" color="indigo">Labrador</Heading>
 			<Flex gap="2">
-				<Button color="gray" variant="soft">
-					<GlobeIcon /> Render
-				</Button>
+				<SettingsMenu />
+				<ViewMenu />
 			</Flex>
 		</Flex>
 	);

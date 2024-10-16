@@ -7,9 +7,14 @@ interface TGlobalState {
 }
 
 const useGlobalStore = create<TGlobalState>((set) => ({
-	isActive: true,
+	isActive: false,
 	isRecording: false,
 	currentFrame: 0,
+	resetCurrentFrame: () => set((state) => {
+		return {
+			currentFrame: 0
+		};
+	}),
 	activate: () => set((state) => ({
 		isActive: true
 	})),

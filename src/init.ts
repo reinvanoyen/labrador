@@ -21,6 +21,9 @@ import useGlobalStore from "./store/global.ts";
 import TextRenderingSystem from "./ecs/systems/TextRenderingSystem.ts";
 import Text from "./ecs/components/Text.ts";
 import ExportSystem from "./ecs/systems/ExportSystem.ts";
+import WiggleSystem from "./ecs/systems/WiggleSystem.ts";
+import Wiggle from "./ecs/components/Wiggle.ts";
+import BlurSystem from "./ecs/systems/BlurSystem.ts";
 
 async function init() {
 
@@ -39,11 +42,18 @@ async function init() {
 
 	ecs.addSystem(new MovementSystem());
 	ecs.addSystem(new TargetMovementSystem());
+	ecs.addSystem(new WiggleSystem());
+
+	const blurSystem = new BlurSystem(renderingSystem);
+	ecs.addSystem(blurSystem);
+
+	// Export system
 	ecs.addSystem(new ExportSystem(renderingSystem));
 
 	const entity = new ECS.Entity([
-		new Position({x: 325, y: 150}),
+		new Position({x: 325, y: 200}),
 		new Target(),
+		new Wiggle(),
 		new Velocity(),
 		new Text({value: 'Labrador', color: 0xf14000, size: 90})
 	]);
@@ -54,6 +64,9 @@ async function init() {
 		const {parameters} = state;
 
 		for (const paramName in parameters) {
+			if (paramName === 'blur') {
+				blurSystem.blur = parameters[paramName];
+			}
 			if (paramName === 'targetX') {
 				entity.components.target.x = parameters[paramName];
 			}
@@ -72,6 +85,15 @@ async function init() {
 			if (paramName === 'textSize') {
 				entity.components.text.size = parameters[paramName];
 			}
+			if (paramName === 'wiggleX') {
+				entity.components.wiggle.x = parameters[paramName];
+			}
+			if (paramName === 'wiggleY') {
+				entity.components.wiggle.y = parameters[paramName];
+			}
+			if (paramName === 'wiggleFreq') {
+				entity.components.wiggle.frequency = parameters[paramName];
+			}
 		}
 	});
 
@@ -83,22 +105,34 @@ async function init() {
 	// Updating state, will trigger listeners
 	useParameterStore.setState({
 		parameters: {
-			text: 'Labrador',
+			blur: 0,
+			text: 'LABRADOR',
 			textSize: 90,
-			targetX: 200,
+			targetX: 325,
 			targetY: 200,
 			mass: 10,
 			max: 10,
-			slowingRadius: 30
+			slowingRadius: 30,
+			wiggleX: 10,
+			wiggleY: 0,
+			wiggleFreq: 10
 		}
-	});
-
-	useGlobalStore.setState({
-		isActive: false
 	});
 
 	useControlStore.setState({
 		controls: {
+			'Blur': [
+				{
+					name: 'blur',
+					label: 'Blur',
+					type: 'slider',
+					options: {
+						min: 0,
+						max: 1000
+					}
+				}
+			],
+
 			'Text': [
 				{
 					name: 'text',
@@ -112,6 +146,35 @@ async function init() {
 					options: {
 						min: 0,
 						max: 1000
+					}
+				}
+			],
+			'Wiggle': [
+				{
+					name: 'wiggleFreq',
+					label: 'Frequency',
+					type: 'slider',
+					options: {
+						min: 2,
+						max: 200
+					}
+				},
+				{
+					name: 'wiggleX',
+					label: 'x',
+					type: 'slider',
+					options: {
+						min: 0,
+						max: 200
+					}
+				},
+				{
+					name: 'wiggleY',
+					label: 'y',
+					type: 'slider',
+					options: {
+						min: 0,
+						max: 200
 					}
 				}
 			],

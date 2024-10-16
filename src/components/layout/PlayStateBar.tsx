@@ -1,10 +1,19 @@
-import {Box, Flex, IconButton} from "@radix-ui/themes";
-import {CircleIcon, PauseIcon, PlayIcon, StopIcon} from "@radix-ui/react-icons";
+import {Box, Flex, IconButton, Text} from "@radix-ui/themes";
+import {CircleIcon, PauseIcon, PlayIcon, ResetIcon, StopIcon} from "@radix-ui/react-icons";
 import useGlobalStore from "../../store/global.ts";
 import Label from "../ui/Label.tsx";
 
 function PlayStateBar() {
-	const {isActive, isRecording, currentFrame, activate, deactivate, startRecording, stopRecording} = useGlobalStore();
+	const {
+		isActive,
+		resetCurrentFrame,
+		isRecording,
+		currentFrame,
+		activate,
+		deactivate,
+		startRecording,
+		stopRecording
+	} = useGlobalStore();
 
 	return (
 		<Flex justify="center" width="100%" py="2" style={{
@@ -12,9 +21,29 @@ function PlayStateBar() {
 			borderBottom: "1px solid var(--gray-3)"
 		}}>
 			<Flex gap="2" width="100%" justify="center" align="center">
-				<Box position="absolute" left="2">
+				<Flex direction="column" position="absolute" left="2" align="start" gap="2">
 					<Label text={`Current frame: ${currentFrame}`} />
-				</Box>
+					<Flex gap="2">
+						{isActive && (
+							<Text size="1" color="green">
+								▷ simulating
+							</Text>
+						)}
+						{isRecording && (
+							<Text size="1" color="red">
+								⦿ recording
+							</Text>
+						)}
+						{(! isActive && ! isRecording) && (
+							<Text size="1" color="gray">
+								Inactive
+							</Text>
+						)}
+					</Flex>
+				</Flex>
+				<IconButton onClick={resetCurrentFrame} color="gray">
+					<ResetIcon />
+				</IconButton>
 				<IconButton onClick={isActive ? deactivate : activate}>
 					{isActive ? <PauseIcon width="14" height="14" /> : <PlayIcon width="14" height="14" />}
 				</IconButton>
