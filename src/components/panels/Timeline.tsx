@@ -12,6 +12,7 @@ function Timeline() {
 			background: "var(--gray-1)"
 		}}>
 			{controlNames.map(controlName => {
+				return ('ok');
 				return (
 					<Box key={controlName}>
 						<Label text={controlName} />

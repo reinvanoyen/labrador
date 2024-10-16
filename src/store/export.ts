@@ -6,6 +6,7 @@ interface TExportState {
 
 const useExportState = create<TExportState>((set) => ({
 	renderedFrames: [],
+	renderedVideos: [],
 	clear: () => set((state) => ({
 		renderedFrames: []
 	})),
@@ -13,6 +14,12 @@ const useExportState = create<TExportState>((set) => ({
 		renderedFrames: [
 			...state.renderedFrames,
 			frame
+		]
+	})),
+	addVideo: (video: string) => set((state) => ({
+		renderedVideos: [
+			...state.renderedVideos,
+			video
 		]
 	}))
 }));

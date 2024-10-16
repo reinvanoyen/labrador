@@ -7,6 +7,9 @@ export default defineConfig({
   define: {
     global: {},
   },
+  optimizeDeps: {
+    exclude: ["@ffmpeg/ffmpeg", "@ffmpeg/util"],
+  },
   build: {
     commonjsOptions: { transformMixedEsModules: true }
   }
