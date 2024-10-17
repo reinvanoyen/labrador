@@ -53,6 +53,14 @@ const labra = {
 	run() {
 		MessageBus.trigger('run', {});
 	},
+	set(name, value) {
+		const {define} = useCodeStore.getState();
+		define(name, value);
+	},
+	get(name) {
+		const {get} = useCodeStore.getState();
+		return get(name);
+	},
 	entity(components = []) {
 		return new ECS.Entity(components);
 	},

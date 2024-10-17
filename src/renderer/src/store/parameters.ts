@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import useControlStore from "./controls.ts";
+import Environment from "../core/Environment.ts";
 
 const useParameterStore = create((set) => ({
 	parameters: {},
@@ -9,7 +10,7 @@ const useParameterStore = create((set) => ({
 
 		if (onChangeCallbacks[name]) {
 			onChangeCallbacks[name].forEach(callback => {
-				callback(value);
+				Environment.run(`(${callback})("${value}");`);
 			});
 		}
 

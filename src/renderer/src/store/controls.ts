@@ -21,7 +21,7 @@ const useControlStore = create<TControlState>((set) => ({
 			...state.onChangeCallbacks,
 			[control.name]: [
 				...state.onChangeCallbacks[control.name] || [],
-				control.onChange
+				control.onChange.toString()
 			]
 		},
 		controls: {

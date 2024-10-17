@@ -12,7 +12,7 @@ const fs = {
 		return blob.arrayBuffer(); // or new Uint8Array(await blob.arrayBuffer()) if Uint8Array is needed
 	},
 	stateToFile() {
-		const {code} = useCodeStore.getState();
+		const {code, variables} = useCodeStore.getState();
 		const {controls, onChangeCallbacks} = useControlStore.getState();
 		const {filename} = useFileStore.getState();
 		const {	currentFrame, atFrameCallbacks } = useGlobalStore.getState();
@@ -20,7 +20,7 @@ const fs = {
 		const {	parameters } = useParameterStore.getState();
 
 		const state = {
-			code: { code },
+			code: { code, variables },
 			control: { controls, onChangeCallbacks },
 			file: { filename },
 			global: {currentFrame, atFrameCallbacks},
@@ -34,6 +34,7 @@ const fs = {
 		const fileState = JSON.parse(contents);
 
 		useCodeStore.setState({
+			variables: fileState.code.variables,
 			code: fileState.code.code
 		});
 

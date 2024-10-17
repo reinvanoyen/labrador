@@ -22,6 +22,7 @@ import BlurSystem from "./ecs/systems/BlurSystem.ts";
 
 // Components
 import Environment from "./core/Environment.ts";
+import labra from "./core/labra.ts";
 
 async function init() {
 
@@ -60,7 +61,7 @@ async function init() {
 		isUpdating = isActive;
 	});
 
-	const env = new Environment(ecs);
+	Environment.init(ecs, labra);
 
 	// Define the render loop
 	function update() {

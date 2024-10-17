@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import useKeyframeStore from "./keyframes.ts";
 import useParameterStore from "./parameters.ts";
+import Environment from "../core/Environment.ts";
 
 interface TGlobalState {
 	isActive: boolean;
@@ -20,7 +21,7 @@ const useGlobalStore = create<TGlobalState>((set, get) => ({
 				...state.atFrameCallbacks,
 				[frame]: [
 					...state.atFrameCallbacks[frame] || [],
-					callback
+					callback.toString()
 				]
 			}
 		};
@@ -38,7 +39,7 @@ const useGlobalStore = create<TGlobalState>((set, get) => ({
 
 		if (atFrameCallbacks[frame]) {
 			atFrameCallbacks[frame].forEach(callback => {
-				callback();
+				Environment.run(`(${callback})();`);
 			});
 		}
 		// Check if frame changed during atFrameCallbacks

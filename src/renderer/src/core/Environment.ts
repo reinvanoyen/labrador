@@ -10,20 +10,20 @@ import MessageBus from "./MessageBus.ts";
 
 export default class Environment {
 
-	private ecs;
-	private labra;
+	private static ecs;
+	private static labra;
 
-	constructor(ecs, labra) {
+	static init(ecs, labra) {
 		this.ecs = ecs;
 		this.labra = labra;
-
+		this.dependencies();
 		MessageBus.addListener('run', () => {
 			const {code} = useCodeStore.getState();
 			this.run(code);
 		});
 	}
 
-	dependencies() {
+	static dependencies() {
 		const position = new Position();
 		const disc = new Disc();
 		const velocity = new Velocity();
@@ -32,7 +32,7 @@ export default class Environment {
 		const wiggle = new Wiggle();
 	}
 
-	run(code) {
+	static run(code) {
 		labra.ecs = this.ecs;
 		eval(code);
 	}
