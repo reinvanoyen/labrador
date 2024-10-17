@@ -3,8 +3,12 @@ import fs from "../../utils/fs.ts";
 
 function FileMenu() {
 
-	const save = () => {
-		fs.save('Nice', 'project.lbr', 'application/json');
+	const open = async () => {
+		const content = await fs.open();
+	};
+
+	const save = async () => {
+		const filePath = await fs.save('UntitledProject.labra', fs.stateToFile());
 	};
 
 	return (
@@ -16,8 +20,9 @@ function FileMenu() {
 				</Button>
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content>
+				<DropdownMenu.Item shortcut="⌘ O" onClick={open}>Open</DropdownMenu.Item>
+				<DropdownMenu.Separator />
 				<DropdownMenu.Item shortcut="⌘ S" onClick={save}>Save As...</DropdownMenu.Item>
-				<DropdownMenu.Item shortcut="⌘ O">Open</DropdownMenu.Item>
 			</DropdownMenu.Content>
 		</DropdownMenu.Root>
 	);

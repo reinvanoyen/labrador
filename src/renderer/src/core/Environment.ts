@@ -6,6 +6,7 @@ import Velocity from "../ecs/components/Velocity.ts";
 import Target from "../ecs/components/Target.ts";
 import Text from "../ecs/components/Text.ts";
 import Wiggle from "../ecs/components/Wiggle.ts";
+import MessageBus from "./MessageBus.ts";
 
 export default class Environment {
 
@@ -15,8 +16,9 @@ export default class Environment {
 	constructor(ecs, labra) {
 		this.ecs = ecs;
 		this.labra = labra;
-		useCodeStore.subscribe((state) => {
-			const {code} = state;
+
+		MessageBus.addListener('run', () => {
+			const {code} = useCodeStore.getState();
 			this.run(code);
 		});
 	}

@@ -2,6 +2,7 @@ import { create } from 'zustand'
 
 interface TExportState {
 	renderedFrames: Array<string>;
+	renderedVideos: Array<string>;
 }
 
 const useExportState = create<TExportState>((set) => ({

@@ -4,8 +4,19 @@ import commonjs from "vite-plugin-commonjs";
 
 export default {
   main: {},
+  preload: {
+    plugins: [commonjs()],
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: '[name].js',
+          format: 'cjs', // commonjs format
+        },
+      },
+      commonjsOptions: { transformMixedEsModules: true }
+    }
+  },
   renderer: {
-    entry: 'src/renderer/init.tsx',
     plugins: [react(), commonjs()],
     define: {
       global: {},

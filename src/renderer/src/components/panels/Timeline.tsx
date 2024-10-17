@@ -17,8 +17,6 @@ function Timeline() {
 		setKeyframe(frame, name, value);
 	};
 
-	console.log(keyframeProperties);
-
 	return (
 		<Flex direction="column" style={{
 			background: "var(--gray-1)"

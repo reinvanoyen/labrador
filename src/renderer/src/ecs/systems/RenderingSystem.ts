@@ -5,8 +5,8 @@ import MessageBus from "../../core/MessageBus.ts";
 
 export default class RenderingSystem extends ECS.System {
 
-	private width = 1920;
-	private height = 1080;
+	private width = 800;
+	private height = 600;
 
 	private rootEl;
 

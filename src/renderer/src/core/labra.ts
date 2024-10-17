@@ -51,8 +51,7 @@ const labra = {
 		setFrameCallback(frame, callback);
 	},
 	run() {
-		const {runCode} = useCodeStore.getState();
-		runCode();
+		MessageBus.trigger('run', {});
 	},
 	entity(components = []) {
 		return new ECS.Entity(components);

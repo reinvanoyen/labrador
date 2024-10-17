@@ -13,7 +13,6 @@ function Export() {
 
 	const exportVideo = async () => {
 
-		console.log('start');
 		const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
 		const ffmpeg = new FFmpeg();
 

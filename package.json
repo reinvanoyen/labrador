@@ -24,9 +24,18 @@
     ],
     "directories": {
       "buildResources": "build"
-    }
+    },
+    "fileAssociations": [
+      {
+        "ext": ["labra"],
+        "name": "Labra Project",
+        "role": "Editor",
+        "icon": "assets/icon.icns"
+      }
+    ]
   },
   "dependencies": {
+    "@electron-toolkit/preload": "^3.0.1",
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "@monaco-editor/react": "^4.6.0",
