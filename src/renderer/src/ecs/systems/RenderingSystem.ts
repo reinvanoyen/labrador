@@ -23,7 +23,7 @@ export default class RenderingSystem extends ECS.System {
 		});
 
 		this.pixiApp = new PIXI.Application();
-		await this.pixiApp.init({ width: this.width, height: this.height });
+		await this.pixiApp.init({ width: this.width, height: this.height, background: 0x000000 });
 		this.stage = this.pixiApp.stage;
 
 		await this.initCanvas(document, '#canvas');

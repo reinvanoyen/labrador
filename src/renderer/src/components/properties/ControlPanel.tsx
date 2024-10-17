@@ -25,7 +25,16 @@ function ControlPanel() {
 									<Flex direction="column" gap="3" p="3">
 										<Label text={controlName} />
 										{controls[controlName].map(control => {
-											return <GenericInput key={control.name} name={control.name} label={control.label} type={control.type} options={control.options} />;
+											return (
+												<GenericInput
+													key={control.name}
+													name={control.name}
+													label={control.label}
+													type={control.type}
+													options={control.options}
+													onChange={control.onChange || null}
+												/>
+											);
 										})}
 									</Flex>
 									<Separator decorative={true} orientation="horizontal" size="4" />

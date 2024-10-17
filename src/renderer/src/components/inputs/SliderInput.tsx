@@ -6,9 +6,10 @@ type TSliderInputProps = {
 	min: number;
 	max: number;
 	step?: number;
+	onChange: (value) => void;
 };
 
-function SliderInput({name, min, max, step = 1}: TSliderInputProps) {
+function SliderInput({name, min, max, step = 1, onChange}: TSliderInputProps) {
 
 	const {parameters, setParameter} = useParameterStore();
 
@@ -16,11 +17,13 @@ function SliderInput({name, min, max, step = 1}: TSliderInputProps) {
 		<Grid columns="12" gap="3" align="center">
 			<Box gridColumnStart="1" gridColumnEnd="10">
 				<Slider value={[parameters[name]]} min={min} max={max} step={step} size="1" variant="soft" onValueChange={(data) => {
+					onChange(data[0]);
 					setParameter(name, data[0]);
 				}} />
 			</Box>
 			<Box gridColumnStart="10" gridColumnEnd="13">
 				<TextField.Root size="1" type="number" value={parameters[name]} onChange={(e) => {
+					onChange(e.target.value);
 					setParameter(name, e.target.value);
 				}} />
 			</Box>

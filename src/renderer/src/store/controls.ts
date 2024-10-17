@@ -5,6 +5,7 @@ interface TControl {
 	label?: string;
 	type: 'slider';
 	options: Record<string, never>;
+	onChange?: (value) => void;
 }
 
 interface TControlState {

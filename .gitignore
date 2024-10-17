@@ -7,8 +7,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+tsconfig.app.tsbuildinfo
+tsconfig.tsbuildinfo
+
 node_modules
 dist
+out
 dist-ssr
 *.local
 

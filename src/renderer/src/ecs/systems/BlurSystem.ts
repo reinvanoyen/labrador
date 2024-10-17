@@ -10,7 +10,10 @@ export default class BlurSystem extends ECS.System {
 	constructor(renderingSystem) {
 		super();
 		this.blurFilter = new BlurFilter();
-		renderingSystem.pixiApp.stage.filters = [this.blurFilter];
+		renderingSystem.pixiApp.stage.filters = [
+			...renderingSystem.pixiApp.stage.filters || [],
+			this.blurFilter
+		];
 	}
 
 	test(entity) {

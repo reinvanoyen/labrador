@@ -1,5 +1,5 @@
 import {Flex, Heading} from "@radix-ui/themes";
-import SettingsMenu from "./SettingsMenu.tsx";
+import FileMenu from "./FileMenu.tsx";
 import ViewMenu from "./ViewMenu.tsx";
 
 function Header() {
@@ -9,7 +9,7 @@ function Header() {
 		}}>
 			<Heading size="3" color="indigo">Labrador</Heading>
 			<Flex gap="2">
-				<SettingsMenu />
+				<FileMenu />
 				<ViewMenu />
 			</Flex>
 		</Flex>

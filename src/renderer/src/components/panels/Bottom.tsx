@@ -3,6 +3,7 @@ import Timeline from "./Timeline.tsx";
 import Export from "./Export.tsx";
 import EntityInspector from "./EntityInspector.tsx";
 import Console from "./Console.tsx";
+import CodeEditor from "./CodeEditor.tsx";
 
 function Bottom() {
 	return (
@@ -12,6 +13,7 @@ function Bottom() {
 				<Tabs.Trigger value="renders">Renders</Tabs.Trigger>
 				<Tabs.Trigger value="entityInspector">Entity inspector</Tabs.Trigger>
 				<Tabs.Trigger value="console">Console</Tabs.Trigger>
+				<Tabs.Trigger value="code">Code editor</Tabs.Trigger>
 			</Tabs.List>
 			<Tabs.Content value="timeline">
 				<Timeline />
@@ -24,6 +26,9 @@ function Bottom() {
 			</Tabs.Content>
 			<Tabs.Content value="console">
 				<Console />
+			</Tabs.Content>
+			<Tabs.Content value="code">
+				<CodeEditor />
 			</Tabs.Content>
 		</Tabs.Root>
 	);

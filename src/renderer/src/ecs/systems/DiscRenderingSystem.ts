@@ -35,9 +35,12 @@ export default class DiscRenderingSystem extends ECS.System {
 	}
 
 	update(entity) {
-		const {position} = entity.components;
+		const {position, disc} = entity.components;
+
+		console.log(entity.discGraphic);
 
 		entity.discGraphic.x = position.x;
 		entity.discGraphic.y = position.y;
+		entity.discGraphic.radius = disc.radius;
 	}
 }
