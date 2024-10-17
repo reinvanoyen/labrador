@@ -6,13 +6,27 @@ interface TGlobalState {
 	isActive: boolean;
 	isRecording: boolean;
 	currentFrame: number;
+	atFrameCallbacks: Record<number, unknown>,
 }
 
 const useGlobalStore = create<TGlobalState>((set, get) => ({
 	isActive: false,
 	isRecording: false,
 	currentFrame: 0,
+	atFrameCallbacks: {},
+	setFrameCallback: (frame, callback) => set((state) => {
+		return {
+			atFrameCallbacks: {
+				...state.atFrameCallbacks,
+				[frame]: [
+					...state.atFrameCallbacks[frame] || [],
+					callback
+				]
+			}
+		};
+	}),
 	setCurrentFrame: (frame) => set((state) => {
+		const {currentFrame, atFrameCallbacks} = useGlobalStore.getState();
 		const {keyframes} = useKeyframeStore.getState();
 		const {setParameter} = useParameterStore.getState();
 
@@ -20,6 +34,19 @@ const useGlobalStore = create<TGlobalState>((set, get) => ({
 			keyframes[frame].forEach(data => {
 				setParameter(data.name, data.value);
 			});
+		}
+
+		if (atFrameCallbacks[frame]) {
+			atFrameCallbacks[frame].forEach(callback => {
+				callback();
+			});
+		}
+		// Check if frame changed during atFrameCallbacks
+		const newState = useGlobalStore.getState();
+		if (newState.currentFrame !== currentFrame) {
+			return {
+				currentFrame: newState.currentFrame
+			};
 		}
 
 		return {

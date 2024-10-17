@@ -7,7 +7,24 @@
   "scripts": {
     "start": "electron-vite preview",
     "dev": "electron-vite dev",
-    "prebuild": "tsc -b && electron-vite build"
+    "build": "electron-vite build",
+    "distribute": "electron-builder"
+  },
+  "build": {
+    "appId": "com.labrardor.id",
+    "productName": "Labrador",
+    "icon": "assets/icon.png",
+    "mac": {
+      "icon": "assets/icon.icns"
+    },
+    "files": [
+      "out/**",
+      "node_modules/**",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build"
+    }
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.10",
@@ -31,6 +48,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
     "electron": "^33.0.1",
+    "electron-builder": "^25.1.8",
     "electron-vite": "^2.3.0",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",

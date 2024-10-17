@@ -7,11 +7,10 @@ type TGenericInputProps = {
 	name: string;
 	label?: string;
 	type: string;
-	onChange: (value) => void;
 	options: Record<string, never>
 };
 
-function GenericInput({name, type, options, label, onChange}: TGenericInputProps) {
+function GenericInput({name, type, options, label}: TGenericInputProps) {
 	if (type === 'slider') {
 		return (
 			<Grid columns="12" gap="3" align="center">
@@ -19,7 +18,7 @@ function GenericInput({name, type, options, label, onChange}: TGenericInputProps
 					<Label text={label || name} />
 				</Box>
 				<Box gridColumnStart="4" gridColumnEnd="13">
-					<SliderInput name={name} label={label} max={options.max} min={options.min} step={options.step} onChange={onChange} />
+					<SliderInput name={name} label={label} max={options.max} min={options.min} step={options.step} />
 				</Box>
 			</Grid>
 		);
@@ -32,7 +31,7 @@ function GenericInput({name, type, options, label, onChange}: TGenericInputProps
 					<Label text={label || name} />
 				</Box>
 				<Box gridColumnStart="4" gridColumnEnd="13">
-					<TextInput name={name} onChange={onChange} />
+					<TextInput name={name} />
 				</Box>
 			</Grid>
 		);

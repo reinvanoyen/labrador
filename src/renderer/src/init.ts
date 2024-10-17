@@ -4,40 +4,33 @@ import "./css/index.css";
 // Stores
 import useParameterStore from "./store/parameters.ts";
 import useControlStore from "./store/controls.ts";
+import useGlobalStore from "./store/global.ts";
+
+// Core
+import MessageBus from "./core/MessageBus.ts";
 
 // Systems
 import UiSystem from "./ecs/systems/UiSystem.tsx";
 import RenderingSystem from "./ecs/systems/RenderingSystem.ts";
 import DiscRenderingSystem from "./ecs/systems/DiscRenderingSystem.ts";
-
-// Components
-import Position from "./ecs/components/Position.ts";
-import Disc from "./ecs/components/Disc.ts";
 import MovementSystem from "./ecs/systems/MovementSystem.ts";
-import Velocity from "./ecs/components/Velocity.ts";
 import TargetMovementSystem from "./ecs/systems/TargetMovementSystem.ts";
-import Target from "./ecs/components/Target.ts";
 import TextRenderingSystem from "./ecs/systems/TextRenderingSystem.ts";
-import Text from "./ecs/components/Text.ts";
 import ExportSystem from "./ecs/systems/ExportSystem.ts";
 import WiggleSystem from "./ecs/systems/WiggleSystem.ts";
-import Wiggle from "./ecs/components/Wiggle.ts";
 import BlurSystem from "./ecs/systems/BlurSystem.ts";
-import MessageBus from "./core/MessageBus.ts";
-import useGlobalStore from "./store/global.ts";
-import useCodeStore from "./store/code.ts";
+
+// Components
+import Environment from "./core/Environment.ts";
 
 async function init() {
-
-	const position = new Position();
-	const disc = new Disc();
 
 	let isUpdating = true;
 	const ecs = new ECS.Core();
 
 	ecs.addSystem(new UiSystem());
 
-	const renderingSystem = new RenderingSystem(document.getElementById('canvas'));
+	const renderingSystem = new RenderingSystem();
 	await renderingSystem.init();
 
 	ecs.addSystem(renderingSystem);
@@ -67,10 +60,7 @@ async function init() {
 		isUpdating = isActive;
 	});
 
-	useCodeStore.subscribe((state) => {
-		const {code} = state;
-		eval(code);
-	});
+	const env = new Environment(ecs);
 
 	// Define the render loop
 	function update() {
