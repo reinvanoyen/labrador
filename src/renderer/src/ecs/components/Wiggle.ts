@@ -1,6 +1,6 @@
-import ECS from 'tnt-ecs';
+import Component from "../core/Component.ts";
 
-export default class Wiggle extends ECS.Component {
+export default class Wiggle extends Component {
 
 	getName() {
 		return 'wiggle';

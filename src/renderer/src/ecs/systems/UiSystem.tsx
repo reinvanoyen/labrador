@@ -1,11 +1,11 @@
 "use strict";
 
-import ECS from 'tnt-ecs';
 import {createRoot} from "react-dom/client";
 import App from "../../components/App.tsx";
 import "@radix-ui/themes/styles.css";
+import System from "../core/System.ts";
 
-export default class UiSystem extends ECS.System {
+export default class UiSystem extends System {
 	constructor() {
 		super();
 

@@ -1,6 +1,6 @@
-import ECS from 'tnt-ecs';
+import Component from "../core/Component.ts";
 
-export default class Velocity extends ECS.Component {
+export default class Velocity extends Component {
 
 	getName() {
 		return 'velocity';

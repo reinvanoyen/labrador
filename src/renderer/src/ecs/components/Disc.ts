@@ -1,8 +1,8 @@
 "use strict";
 
-import ECS from 'tnt-ecs';
+import Component from "../core/Component.ts";
 
-export default class Disc extends ECS.Component {
+export default class Disc extends Component {
 
 	getName() {
 		return 'disc';

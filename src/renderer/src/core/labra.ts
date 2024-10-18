@@ -1,7 +1,6 @@
 "use strict";
 
 import useConsoleStore from "../store/console.ts";
-import ECS from "tnt-ecs";
 import useControlStore, {TControl} from "../store/controls.ts";
 import useParameterStore from "../store/parameters.ts";
 import useCodeStore from "../store/code.ts";
@@ -9,6 +8,7 @@ import useGlobalStore from "../store/global.ts";
 import useKeyframeStore from "../store/keyframes.ts";
 import MessageBus from "./MessageBus.ts";
 import useExportState from "../store/export.ts";
+import Entity from "../ecs/core/Entity.ts";
 
 const labra = {
 	ecs: null,
@@ -62,7 +62,7 @@ const labra = {
 		return get(name);
 	},
 	entity(components = []) {
-		return new ECS.Entity(components);
+		return new Entity(components);
 	},
 	add(entity) {
 		labra.ecs.addEntity(entity);

@@ -1,5 +1,5 @@
-import ECS from 'tnt-ecs';
 import { vec2 as Vector2 } from "gl-matrix";
+import System from "../core/System.ts";
 
 /*
 
@@ -8,7 +8,7 @@ import { vec2 as Vector2 } from "gl-matrix";
 * This system is responsible for moving a position towards a target by velocity
 *
 * */
-export default class TargetMovementSystem extends ECS.System {
+export default class TargetMovementSystem extends System {
 
 	test(entity) {
 		return entity.components.position && entity.components.target && entity.components.velocity;

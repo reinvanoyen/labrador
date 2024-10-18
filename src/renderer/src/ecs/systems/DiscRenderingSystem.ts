@@ -1,7 +1,7 @@
-import ECS from 'tnt-ecs';
 import {Graphics} from "pixi.js";
+import System from "../core/System.ts";
 
-export default class DiscRenderingSystem extends ECS.System {
+export default class DiscRenderingSystem extends System {
 
 	private renderingSystem;
 

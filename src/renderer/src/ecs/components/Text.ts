@@ -1,8 +1,8 @@
 "use strict";
 
-import ECS from 'tnt-ecs';
+import Component from "../core/Component.ts";
 
-export default class Text extends ECS.Component {
+export default class Text extends Component {
 
 	getName() {
 		return 'text';

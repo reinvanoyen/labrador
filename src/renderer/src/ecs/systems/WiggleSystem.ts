@@ -1,6 +1,6 @@
-import ECS from 'tnt-ecs';
+import System from "../core/System.ts";
 
-export default class WiggleSystem extends ECS.System {
+export default class WiggleSystem extends System {
 
 	test(entity) {
 		return entity.components.position && entity.components.target && entity.components.wiggle;

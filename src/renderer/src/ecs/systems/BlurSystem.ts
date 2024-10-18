@@ -1,7 +1,7 @@
-import ECS from 'tnt-ecs';
 import { BlurFilter } from 'pixi.js';
+import System from "../core/System.ts";
 
-export default class BlurSystem extends ECS.System {
+export default class BlurSystem extends System {
 
 	public blur = 0;
 

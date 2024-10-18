@@ -1,5 +1,5 @@
-import ECS from 'tnt-ecs';
 import { vec2 as Vector2 } from "gl-matrix";
+import System from "../core/System.ts";
 
 /*
 
@@ -8,7 +8,7 @@ import { vec2 as Vector2 } from "gl-matrix";
 * Adds velocity to position
 *
 * */
-export default class MovementSystem extends ECS.System {
+export default class MovementSystem extends System {
 
 	test(entity) {
 		return entity.components.position && entity.components.velocity;

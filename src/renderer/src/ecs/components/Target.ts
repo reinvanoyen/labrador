@@ -1,6 +1,6 @@
-import ECS from 'tnt-ecs';
+import Component from "../core/Component.ts";
 
-export default class Target extends ECS.Component {
+export default class Target extends Component {
 
 	getName() {
 		return 'target';

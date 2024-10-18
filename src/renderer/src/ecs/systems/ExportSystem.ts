@@ -1,8 +1,8 @@
-import ECS from 'tnt-ecs';
 import useExportState from "../../store/export.ts";
 import useGlobalStore from "../../store/global.ts";
+import System from "../core/System.ts";
 
-export default class ExportSystem extends ECS.System {
+export default class ExportSystem extends System {
 
 	private renderingSystem;
 

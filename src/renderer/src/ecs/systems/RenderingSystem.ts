@@ -1,9 +1,9 @@
-import ECS from 'tnt-ecs';
 import * as PIXI from 'pixi.js';
 import dom from "../../utils/dom.ts";
 import MessageBus from "../../core/MessageBus.ts";
+import System from "../core/System.ts";
 
-export default class RenderingSystem extends ECS.System {
+export default class RenderingSystem extends System {
 
 	private width = 800;
 	private height = 600;

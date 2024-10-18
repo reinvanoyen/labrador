@@ -1,7 +1,7 @@
-import ECS from 'tnt-ecs';
 import {Text, TextStyle} from 'pixi.js';
+import System from "../core/System.ts";
 
-export default class TextRenderingSystem extends ECS.System {
+export default class TextRenderingSystem extends System {
 
 	private renderingSystem;
 

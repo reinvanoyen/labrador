@@ -1,6 +1,6 @@
-import ECS from "tnt-ecs";
+import Component from "../core/Component.ts";
 
-export default class Position extends ECS.Component {
+export default class Position extends Component {
 
 	getName() {
 		return 'position';

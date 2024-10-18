@@ -1,4 +1,3 @@
-import ECS from 'tnt-ecs';
 import "./css/index.css";
 
 // Stores
@@ -23,11 +22,12 @@ import BlurSystem from "./ecs/systems/BlurSystem.ts";
 // Components
 import Environment from "./core/Environment.ts";
 import labra from "./core/labra.ts";
+import Core from "./ecs/core/Core.ts";
 
 async function init() {
 
 	let isUpdating = true;
-	const ecs = new ECS.Core();
+	const ecs = new Core();
 
 	ecs.addSystem(new UiSystem());
 
